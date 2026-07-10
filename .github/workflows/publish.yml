@@ -1,0 +1,40 @@
+# Publica la librería en Maven Central al crear una release en GitHub.
+#
+# Requiere estos SECRETS configurados en el repositorio
+# (Settings > Secrets and variables > Actions). NUNCA los escribas en el código:
+#   MAVEN_CENTRAL_USERNAME   -> token de usuario del Central Portal (central.sonatype.com)
+#   MAVEN_CENTRAL_PASSWORD   -> token de contraseña del Central Portal
+#   SIGNING_KEY              -> clave GPG privada exportada en armadura ASCII
+#   SIGNING_KEY_PASSWORD     -> contraseña de la clave GPG
+#
+# Se usa macOS para poder compilar también los targets de iOS.
+name: Publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Configurar Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Publicar en Maven Central
+        run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache --stacktrace
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}

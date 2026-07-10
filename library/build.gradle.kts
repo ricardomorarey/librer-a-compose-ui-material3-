@@ -1,0 +1,106 @@
+import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.mavenPublish)
+}
+
+kotlin {
+    // Android
+    androidTarget {
+        publishLibraryVariants("release")
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
+
+    // Escritorio (Windows, macOS, Linux)
+    jvm("desktop")
+
+    // iOS (se compila desde macOS; en Windows estos targets se desactivan solos)
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    // Web (WebAssembly)
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+        }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
+    }
+}
+
+android {
+    namespace = "io.github.ricardomorarey.composeui"
+    compileSdk = libs.versions.androidCompileSdk.get().toInt()
+    defaultConfig {
+        minSdk = libs.versions.androidMinSdk.get().toInt()
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    // Solo firma si hay una clave configurada (en CI llega por variables de
+    // entorno ORG_GRADLE_PROJECT_signingInMemoryKey...; nunca va en el repo)
+    if (providers.gradleProperty("signingInMemoryKey").isPresent ||
+        providers.gradleProperty("signing.keyId").isPresent
+    ) {
+        signAllPublications()
+    }
+
+    coordinates(
+        groupId = project.property("GROUP").toString(),
+        artifactId = "compose-ui-material3",
+        version = project.property("VERSION_NAME").toString(),
+    )
+
+    pom {
+        name.set("Compose UI Material3")
+        description.set(
+            "Librería de componentes reutilizables de Jetpack Compose (Material 3) " +
+                "para Kotlin Multiplatform: Android, Desktop, iOS y Web."
+        )
+        url.set("https://github.com/ricardomorarey/librer-a-compose-ui-material3-")
+        inceptionYear.set("2026")
+
+        licenses {
+            license {
+                name.set("MIT License")
+                url.set("https://opensource.org/licenses/MIT")
+            }
+        }
+        developers {
+            developer {
+                id.set("ricardomorarey")
+                name.set("ricardomorarey")
+                url.set("https://github.com/ricardomorarey")
+            }
+        }
+        scm {
+            url.set("https://github.com/ricardomorarey/librer-a-compose-ui-material3-")
+            connection.set("scm:git:git://github.com/ricardomorarey/librer-a-compose-ui-material3-.git")
+            developerConnection.set("scm:git:ssh://git@github.com/ricardomorarey/librer-a-compose-ui-material3-.git")
+        }
+    }
+}

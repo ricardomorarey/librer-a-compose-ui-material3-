@@ -1,0 +1,33 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Kotlin
+.kotlin/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Configuración local (contiene rutas de tu máquina: NO se sube)
+local.properties
+
+# Credenciales y firmas (por si acaso: NUNCA deben subirse)
+*.keystore
+*.jks
+*.gpg
+*.asc
+secring.*
+signing.properties
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Node (usado por el target wasm)
+node_modules/
