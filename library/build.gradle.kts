@@ -69,11 +69,8 @@ mavenPublishing {
         signAllPublications()
     }
 
-    coordinates(
-        groupId = project.property("GROUP").toString(),
-        artifactId = "compose-ui-material3",
-        version = project.property("VERSION_NAME").toString(),
-    )
+    // Las coordenadas (GROUP, POM_ARTIFACT_ID, VERSION_NAME) se leen
+    // automáticamente de gradle.properties
 
     pom {
         name.set("Compose UI Material3")
