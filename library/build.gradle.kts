@@ -43,7 +43,32 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
+        // Solo para tests de escritorio: permite renderizar los componentes
+        // a PNG y generar las capturas del README (no se publica)
+        val desktopTest by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+            }
+        }
     }
+}
+
+// Genera las capturas del README (docs/screenshots) renderizando los
+// componentes con Compose Desktop. Se usa JavaExec en vez de desktopTest
+// porque el worker de tests de Gradle corrompe en Windows los classpath
+// con caracteres no ASCII (la carpeta del proyecto contiene "í")
+tasks.register<JavaExec>("generateScreenshots") {
+    group = "documentation"
+    description = "Renderiza los componentes y guarda los PNG en docs/screenshots"
+    dependsOn("desktopTestClasses")
+    val desktopTestCompilation = kotlin.targets.getByName("desktop")
+        .compilations.getByName("test")
+    classpath = files(
+        desktopTestCompilation.output.allOutputs,
+        kotlin.targets.getByName("desktop").compilations.getByName("main").output.allOutputs,
+        configurations.getByName("desktopTestRuntimeClasspath"),
+    )
+    mainClass.set("io.github.ricardomorarey.composeui.screenshots.ScreenshotGeneratorKt")
 }
 
 android {

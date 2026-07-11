@@ -50,6 +50,9 @@ SecondaryButton(text = "Cancelar", onClick = { /* ... */ })
 GradientButton(text = "Empezar", onClick = { /* ... */ })
 ```
 
+<img src="docs/screenshots/buttons.png" width="450" alt="LoadingButton, SecondaryButton y GradientButton">
+
+
 ### Tarjetas — `...composeui.cards`
 
 ```kotlin
@@ -63,6 +66,9 @@ ExpandableCard(title = "Detalles del pedido") {
     Text("Contenido que se despliega con animación")
 }
 ```
+
+<img src="docs/screenshots/cards.png" width="450" alt="InfoCard y ExpandableCard">
+
 
 ### Campos de texto — `...composeui.textfields`
 
@@ -78,6 +84,9 @@ PasswordTextField(value = password, onValueChange = { password = it })
 
 SearchField(value = query, onValueChange = { query = it })
 ```
+
+<img src="docs/screenshots/textfields.png" width="450" alt="LabeledTextField, PasswordTextField y SearchField">
+
 
 ### Chips — `...composeui.chips`
 
@@ -96,6 +105,9 @@ ChoiceChipRow(
     onOptionSelected = { period = it },
 )
 ```
+
+<img src="docs/screenshots/chips.png" width="450" alt="FilterChipGroup y ChoiceChipRow">
+
 
 ### Diálogos — `...composeui.dialogs`
 
@@ -124,6 +136,9 @@ LoadingOverlay(visible = isLoading) {
 Box(Modifier.fillMaxWidth().height(20.dp).shimmer())
 ```
 
+<img src="docs/screenshots/loading.png" width="450" alt="Placeholders shimmer y LoadingOverlay">
+
+
 ### Estados — `...composeui.states`
 
 ```kotlin
@@ -141,6 +156,9 @@ ErrorState(
 )
 ```
 
+<img src="docs/screenshots/states.png" width="450" alt="EmptyState">
+
+
 ### Valoración — `...composeui.rating`
 
 ```kotlin
@@ -150,6 +168,9 @@ RatingBar(
 )
 ```
 
+<img src="docs/screenshots/rating.png" width="450" alt="RatingBar">
+
+
 ### Varios — `...composeui.misc`
 
 ```kotlin
@@ -157,6 +178,9 @@ SectionHeader(title = "Populares", actionText = "Ver todo", onAction = { /* ... 
 
 CounterBadge(count = 128) // muestra "99+"
 ```
+
+<img src="docs/screenshots/misc.png" width="450" alt="SectionHeader y CounterBadge">
+
 
 ## Compilar el proyecto
 
@@ -166,6 +190,12 @@ CounterBadge(count = 128) // muestra "99+"
 
 - En **Windows/Linux** se compilan Android, Desktop y Web (los targets de iOS se omiten automáticamente).
 - En **macOS** se compilan todos los targets, incluido iOS.
+
+Las capturas del README se generan renderizando los componentes con Compose Desktop (sin emulador):
+
+```bash
+./gradlew :library:generateScreenshots
+```
 
 ## Publicar en Maven Central
 
