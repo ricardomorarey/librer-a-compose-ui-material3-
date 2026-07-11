@@ -1,5 +1,9 @@
 # Compose UI Material3
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.ricardomorarey/compose-ui-material3)](https://central.sonatype.com/artifact/io.github.ricardomorarey/compose-ui-material3)
+[![Build](https://github.com/ricardomorarey/librer-a-compose-ui-material3-/actions/workflows/build.yml/badge.svg)](https://github.com/ricardomorarey/librer-a-compose-ui-material3-/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Librería de componentes reutilizables de **Jetpack Compose** con **Material 3 de Google**, construida con **Kotlin Multiplatform** y **Compose Multiplatform**: escribe la UI una vez y úsala en:
 
 | Plataforma | Target |
@@ -13,7 +17,7 @@ Licencia [MIT](LICENSE) — úsala libremente en cualquier proyecto.
 
 ## Instalación
 
-Cuando esté publicada en Maven Central:
+Disponible en [Maven Central](https://central.sonatype.com/artifact/io.github.ricardomorarey/compose-ui-material3) — no necesitas añadir ningún repositorio extra:
 
 ```kotlin
 // build.gradle.kts (módulo)
@@ -22,13 +26,19 @@ dependencies {
 }
 ```
 
-Mientras tanto puedes clonarla y usarla como módulo local, o publicarla en tu Maven local:
+En un proyecto Kotlin Multiplatform, añádela a `commonMain`:
 
-```bash
-./gradlew publishToMavenLocal
+```kotlin
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation("io.github.ricardomorarey:compose-ui-material3:0.1.0")
+        }
+    }
+}
 ```
 
-y consumirla añadiendo `mavenLocal()` a tus repositorios.
+Para probar cambios locales sin publicar, puedes instalarla en tu Maven local con `./gradlew publishToMavenLocal` y consumirla añadiendo `mavenLocal()` a tus repositorios.
 
 ## Componentes
 
