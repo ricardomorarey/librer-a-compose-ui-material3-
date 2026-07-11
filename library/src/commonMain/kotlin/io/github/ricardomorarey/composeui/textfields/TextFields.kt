@@ -31,7 +31,7 @@ import io.github.ricardomorarey.composeui.internal.drawMagnifier
  * @param singleLine Si true (por defecto), una sola línea.
  */
 @Composable
-fun LabeledTextField(
+public fun LabeledTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
@@ -61,7 +61,7 @@ fun LabeledTextField(
  * @param errorMessage Si no es null, el campo se marca en error y muestra este mensaje.
  */
 @Composable
-fun PasswordTextField(
+public fun PasswordTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -101,7 +101,7 @@ fun PasswordTextField(
  * @param placeholder Texto de ayuda cuando el campo está vacío.
  */
 @Composable
-fun SearchField(
+public fun SearchField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,

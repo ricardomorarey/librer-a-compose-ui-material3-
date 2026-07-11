@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
  * @param leadingContent Contenido opcional al inicio (icono, avatar...).
  */
 @Composable
-fun SwitchRow(
+public fun SwitchRow(
     title: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
@@ -68,7 +68,7 @@ fun SwitchRow(
  * @param leadingContent Contenido opcional al inicio (icono, avatar...).
  */
 @Composable
-fun CheckboxRow(
+public fun CheckboxRow(
     title: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
@@ -103,7 +103,7 @@ fun CheckboxRow(
  * @param enabled Si false, deshabilita el grupo entero.
  */
 @Composable
-fun RadioGroup(
+public fun RadioGroup(
     options: List<String>,
     selectedOption: String?,
     onOptionSelected: (String) -> Unit,

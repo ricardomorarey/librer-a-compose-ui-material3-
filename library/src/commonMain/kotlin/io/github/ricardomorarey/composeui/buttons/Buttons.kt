@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
  * @param enabled Si false, deshabilita el botón.
  */
 @Composable
-fun LoadingButton(
+public fun LoadingButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -65,7 +65,7 @@ fun LoadingButton(
  * @param onClick Acción al pulsar.
  */
 @Composable
-fun DestructiveButton(
+public fun DestructiveButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -91,7 +91,7 @@ fun DestructiveButton(
  * @param onClick Acción al pulsar.
  */
 @Composable
-fun SecondaryButton(
+public fun SecondaryButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -115,7 +115,7 @@ fun SecondaryButton(
  * @param shape Forma del botón.
  */
 @Composable
-fun GradientButton(
+public fun GradientButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,

@@ -3,6 +3,8 @@ kotlin = "2.1.21"
 agp = "8.10.1"
 composeMultiplatform = "1.8.2"
 mavenPublish = "0.32.0"
+dokka = "2.0.0"
+binaryCompatibilityValidator = "0.17.0"
 androidCompileSdk = "35"
 androidMinSdk = "24"
 
@@ -12,3 +14,5 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }

@@ -35,7 +35,7 @@ import io.github.ricardomorarey.composeui.internal.drawPlus
  * @param range Rango permitido; los botones se deshabilitan en los extremos.
  */
 @Composable
-fun QuantityStepper(
+public fun QuantityStepper(
     value: Int,
     onValueChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
@@ -102,7 +102,7 @@ private fun StepperButton(
  * @param currentStep Índice (desde 0) del paso activo.
  */
 @Composable
-fun StepProgressIndicator(
+public fun StepProgressIndicator(
     steps: List<String>,
     currentStep: Int,
     modifier: Modifier = Modifier,

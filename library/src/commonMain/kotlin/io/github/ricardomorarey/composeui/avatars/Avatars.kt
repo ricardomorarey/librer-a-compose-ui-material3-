@@ -51,7 +51,7 @@ private fun initialsOf(name: String): String =
  * @param containerColor Color de fondo; si es null se deriva del nombre.
  */
 @Composable
-fun InitialsAvatar(
+public fun InitialsAvatar(
     name: String,
     modifier: Modifier = Modifier,
     size: Dp = 40.dp,
@@ -85,7 +85,7 @@ fun InitialsAvatar(
  * @param size Diámetro de cada avatar.
  */
 @Composable
-fun AvatarGroup(
+public fun AvatarGroup(
     names: List<String>,
     modifier: Modifier = Modifier,
     maxVisible: Int = 4,

@@ -30,7 +30,7 @@ import io.github.ricardomorarey.composeui.internal.starPath
  * @param emptyColor Color del borde de las estrellas vacías.
  */
 @Composable
-fun RatingBar(
+public fun RatingBar(
     rating: Int,
     modifier: Modifier = Modifier,
     maxRating: Int = 5,

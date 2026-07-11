@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.dp
  * @param message Texto opcional bajo el indicador de progreso.
  */
 @Composable
-fun FullScreenLoading(
+public fun FullScreenLoading(
     modifier: Modifier = Modifier,
     message: String? = null,
 ) {
@@ -64,7 +64,7 @@ fun FullScreenLoading(
  * @param content Contenido sobre el que se superpone la carga.
  */
 @Composable
-fun LoadingOverlay(
+public fun LoadingOverlay(
     visible: Boolean,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
@@ -93,7 +93,7 @@ fun LoadingOverlay(
  *
  * @param cornerRadius Radio de las esquinas del rectángulo dibujado.
  */
-fun Modifier.shimmer(cornerRadius: Dp = 8.dp): Modifier = composed {
+public fun Modifier.shimmer(cornerRadius: Dp = 8.dp): Modifier = composed {
     val baseColor = MaterialTheme.colorScheme.surfaceVariant
     val highlightColor = MaterialTheme.colorScheme.surface
 

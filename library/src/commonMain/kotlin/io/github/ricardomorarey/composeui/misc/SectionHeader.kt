@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
  * @param onAction Callback de la acción; solo se muestra si [actionText] no es null.
  */
 @Composable
-fun SectionHeader(
+public fun SectionHeader(
     title: String,
     modifier: Modifier = Modifier,
     actionText: String? = null,
@@ -56,7 +56,7 @@ fun SectionHeader(
  * @param text Etiqueta que se muestra en el centro.
  */
 @Composable
-fun LabeledDivider(
+public fun LabeledDivider(
     text: String,
     modifier: Modifier = Modifier,
 ) {
@@ -85,7 +85,7 @@ fun LabeledDivider(
  * @param contentColor Color del texto.
  */
 @Composable
-fun CounterBadge(
+public fun CounterBadge(
     count: Int,
     modifier: Modifier = Modifier,
     maxCount: Int = 99,

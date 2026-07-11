@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
  * @param onAction Acción del botón; solo se muestra si [actionText] no es null.
  */
 @Composable
-fun EmptyState(
+public fun EmptyState(
     title: String,
     modifier: Modifier = Modifier,
     message: String? = null,
@@ -77,7 +77,7 @@ fun EmptyState(
  * @param onRetry Acción al pulsar reintentar.
  */
 @Composable
-fun ErrorState(
+public fun ErrorState(
     title: String,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,

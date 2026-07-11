@@ -2,6 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.ricardomorarey/compose-ui-material3)](https://central.sonatype.com/artifact/io.github.ricardomorarey/compose-ui-material3)
 [![Build](https://github.com/ricardomorarey/librer-a-compose-ui-material3-/actions/workflows/build.yml/badge.svg)](https://github.com/ricardomorarey/librer-a-compose-ui-material3-/actions/workflows/build.yml)
+[![Docs](https://img.shields.io/badge/docs-Dokka-blue)](https://ricardomorarey.github.io/librer-a-compose-ui-material3-/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Librería de componentes reutilizables de **Jetpack Compose** con **Material 3 de Google**, construida con **Kotlin Multiplatform** y **Compose Multiplatform**: escribe la UI una vez y úsala en:
@@ -267,6 +268,25 @@ LabeledDivider(text = "o continúa con")
 <img src="docs/screenshots/misc.png" width="450" alt="SectionHeader y CounterBadge">
 
 
+## App de demo
+
+El módulo [demo/](demo/) es una galería interactiva de escritorio con todos los componentes. Para lanzarla:
+
+```bash
+./gradlew :demo:run
+```
+
+## Documentación de la API
+
+La referencia completa (generada con Dokka a partir de los KDoc) se publica automáticamente en
+**https://ricardomorarey.github.io/librer-a-compose-ui-material3-/** con cada push a `main`.
+Para generarla en local: `./gradlew :library:dokkaGenerate` (queda en `library/build/dokka/html`).
+
+## Estabilidad de la API
+
+- La librería usa el modo [`explicitApi()`](https://kotlinlang.org/docs/api-guidelines-simplicity.html#use-explicit-api-mode) de Kotlin: toda la API pública declara su visibilidad de forma explícita.
+- El [binary compatibility validator](https://github.com/Kotlin/binary-compatibility-validator) vigila que ninguna release rompa la API sin querer: los ficheros `library/api/*.api` describen la API pública y el CI falla si cambian sin actualizarse. Tras un cambio intencionado de API, ejecuta `./gradlew :library:apiDump` y revisa el diff en el commit.
+
 ## Compilar el proyecto
 
 ```bash
@@ -282,15 +302,16 @@ Las capturas del README se generan renderizando los componentes con Compose Desk
 ./gradlew :library:generateScreenshots
 ```
 
-## Publicar en Maven Central
+## Publicar una versión nueva
 
-La publicación usa el [Central Portal de Sonatype](https://central.sonatype.com) mediante el plugin de Vanniktech. **Ninguna credencial vive en este repositorio**: todo se pasa por variables de entorno o GitHub Secrets.
+Todo el ciclo está automatizado en el workflow [release.yml](.github/workflows/release.yml):
 
-1. Crea una cuenta en [central.sonatype.com](https://central.sonatype.com) y verifica el namespace `io.github.ricardomorarey` (basta con demostrar que controlas la cuenta de GitHub).
-2. Genera un token de publicación (username + password).
-3. Crea una clave GPG y exporta la privada en ASCII: `gpg --armor --export-secret-keys TU_ID`.
-4. En GitHub, ve a *Settings → Secrets and variables → Actions* y crea los secrets `MAVEN_CENTRAL_USERNAME`, `MAVEN_CENTRAL_PASSWORD`, `SIGNING_KEY` y `SIGNING_KEY_PASSWORD`.
-5. Crea una *release* en GitHub: el workflow [publish.yml](.github/workflows/publish.yml) compila (en macOS, para incluir iOS) y publica automáticamente.
+1. Ve a *Actions → Release → Run workflow* e indica la versión (por ejemplo `0.2.0`).
+2. El workflow actualiza `VERSION_NAME` en `gradle.properties` (con commit incluido), publica en Maven Central (compilando en macOS para incluir iOS) y crea la release en GitHub con el tag `vX.Y.Z` y notas generadas.
+
+También puede hacerse a la antigua: crear una release a mano en GitHub dispara [publish.yml](.github/workflows/publish.yml), que solo publica (en ese caso, recuerda subir antes `VERSION_NAME`).
+
+La publicación usa el [Central Portal de Sonatype](https://central.sonatype.com) mediante el plugin de Vanniktech. **Ninguna credencial vive en este repositorio**: los workflows leen los secrets `MAVEN_CENTRAL_USERNAME`, `MAVEN_CENTRAL_PASSWORD`, `SIGNING_KEY` y `SIGNING_KEY_PASSWORD` de *Settings → Secrets and variables → Actions*.
 
 ## Seguridad
 

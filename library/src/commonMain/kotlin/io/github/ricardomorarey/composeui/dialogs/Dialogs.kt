@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
  *   (útil para acciones como eliminar).
  */
 @Composable
-fun ConfirmDialog(
+public fun ConfirmDialog(
     title: String,
     message: String,
     onConfirm: () -> Unit,
@@ -61,7 +61,7 @@ fun ConfirmDialog(
  * @param buttonText Texto del botón.
  */
 @Composable
-fun InfoDialog(
+public fun InfoDialog(
     title: String,
     message: String,
     onDismiss: () -> Unit,

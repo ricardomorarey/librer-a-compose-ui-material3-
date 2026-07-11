@@ -22,8 +22,13 @@ jobs:
       - name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Compilar librería
-        run: ./gradlew :library:assemble --stacktrace
+      - name: Compilar librería y demo
+        run: ./gradlew :library:assemble :demo:desktopJar --stacktrace
+
+      # Comprueba que la API pública no ha cambiado sin actualizar los
+      # ficheros de library/api (ejecutar apiDump si el cambio es intencionado)
+      - name: Validar compatibilidad binaria de la API
+        run: ./gradlew :library:apiCheck --stacktrace
 
       # Renderiza todos los componentes a PNG con Compose Desktop:
       # sirve de smoke test de que ninguno rompe en tiempo de ejecución

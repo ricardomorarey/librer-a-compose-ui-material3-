@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun FilterChipGroup(
+public fun FilterChipGroup(
     options: List<String>,
     selectedOptions: Set<String>,
     onSelectionChange: (Set<String>) -> Unit,
@@ -52,7 +52,7 @@ fun FilterChipGroup(
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun ChoiceChipRow(
+public fun ChoiceChipRow(
     options: List<String>,
     selectedOption: String?,
     onOptionSelected: (String) -> Unit,

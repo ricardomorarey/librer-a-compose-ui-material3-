@@ -37,7 +37,7 @@ import io.github.ricardomorarey.composeui.internal.drawChevronDown
  * @param trailingContent Contenido opcional al final (badge, flecha...).
  */
 @Composable
-fun InfoCard(
+public fun InfoCard(
     title: String,
     modifier: Modifier = Modifier,
     subtitle: String? = null,
@@ -90,7 +90,7 @@ fun InfoCard(
  * @param content Contenido que se muestra al expandir.
  */
 @Composable
-fun ExpandableCard(
+public fun ExpandableCard(
     title: String,
     modifier: Modifier = Modifier,
     initiallyExpanded: Boolean = false,

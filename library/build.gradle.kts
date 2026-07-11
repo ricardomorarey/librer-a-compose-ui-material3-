@@ -8,9 +8,15 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.mavenPublish)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.binaryCompatibilityValidator)
 }
 
 kotlin {
+    // Toda la API pública debe declarar su visibilidad explícitamente;
+    // evita exponer cosas por accidente
+    explicitApi()
+
     // Android
     androidTarget {
         publishLibraryVariants("release")
@@ -81,6 +87,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+dokka {
+    moduleName.set("compose-ui-material3")
 }
 
 mavenPublishing {

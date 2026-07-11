@@ -27,7 +27,7 @@ import io.github.ricardomorarey.composeui.internal.drawInfoCircle
 import io.github.ricardomorarey.composeui.internal.drawWarningTriangle
 
 /** Severidad de un [InlineBanner]; determina el color y el icono. */
-enum class BannerSeverity { Info, Success, Warning, Error }
+public enum class BannerSeverity { Info, Success, Warning, Error }
 
 /**
  * Aviso en línea (banner) para mensajes contextuales: información,
@@ -41,7 +41,7 @@ enum class BannerSeverity { Info, Success, Warning, Error }
  * @param onDismiss Si se indica, muestra una X para descartar el banner.
  */
 @Composable
-fun InlineBanner(
+public fun InlineBanner(
     message: String,
     modifier: Modifier = Modifier,
     severity: BannerSeverity = BannerSeverity.Info,
