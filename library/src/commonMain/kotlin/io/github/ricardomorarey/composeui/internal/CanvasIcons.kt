@@ -100,6 +100,120 @@ internal fun DrawScope.drawChevronDown(color: Color) {
     )
 }
 
+/** Dibuja una marca de verificación (check). */
+internal fun DrawScope.drawCheck(color: Color) {
+    val stroke = size.minDimension * 0.12f
+    drawLine(
+        color = color,
+        start = Offset(size.width * 0.2f, size.height * 0.55f),
+        end = Offset(size.width * 0.42f, size.height * 0.75f),
+        strokeWidth = stroke,
+        cap = StrokeCap.Round,
+    )
+    drawLine(
+        color = color,
+        start = Offset(size.width * 0.42f, size.height * 0.75f),
+        end = Offset(size.width * 0.8f, size.height * 0.28f),
+        strokeWidth = stroke,
+        cap = StrokeCap.Round,
+    )
+}
+
+/** Dibuja un signo más (incrementar). */
+internal fun DrawScope.drawPlus(color: Color) {
+    val stroke = size.minDimension * 0.11f
+    drawLine(
+        color = color,
+        start = Offset(size.width * 0.5f, size.height * 0.18f),
+        end = Offset(size.width * 0.5f, size.height * 0.82f),
+        strokeWidth = stroke,
+        cap = StrokeCap.Round,
+    )
+    drawMinus(color)
+}
+
+/** Dibuja un signo menos (decrementar). */
+internal fun DrawScope.drawMinus(color: Color) {
+    val stroke = size.minDimension * 0.11f
+    drawLine(
+        color = color,
+        start = Offset(size.width * 0.18f, size.height * 0.5f),
+        end = Offset(size.width * 0.82f, size.height * 0.5f),
+        strokeWidth = stroke,
+        cap = StrokeCap.Round,
+    )
+}
+
+/** Dibuja una "i" dentro de un círculo (información). */
+internal fun DrawScope.drawInfoCircle(color: Color) {
+    val stroke = size.minDimension * 0.08f
+    drawCircle(
+        color = color,
+        radius = size.minDimension * 0.42f,
+        center = center,
+        style = Stroke(width = stroke),
+    )
+    drawCircle(
+        color = color,
+        radius = size.minDimension * 0.06f,
+        center = Offset(center.x, size.height * 0.32f),
+    )
+    drawLine(
+        color = color,
+        start = Offset(center.x, size.height * 0.47f),
+        end = Offset(center.x, size.height * 0.68f),
+        strokeWidth = stroke * 1.4f,
+        cap = StrokeCap.Round,
+    )
+}
+
+/** Dibuja un triángulo con exclamación (aviso). */
+internal fun DrawScope.drawWarningTriangle(color: Color) {
+    val stroke = size.minDimension * 0.08f
+    val triangle = Path().apply {
+        moveTo(size.width * 0.5f, size.height * 0.12f)
+        lineTo(size.width * 0.92f, size.height * 0.85f)
+        lineTo(size.width * 0.08f, size.height * 0.85f)
+        close()
+    }
+    drawPath(path = triangle, color = color, style = Stroke(width = stroke))
+    drawLine(
+        color = color,
+        start = Offset(center.x, size.height * 0.38f),
+        end = Offset(center.x, size.height * 0.6f),
+        strokeWidth = stroke * 1.4f,
+        cap = StrokeCap.Round,
+    )
+    drawCircle(
+        color = color,
+        radius = size.minDimension * 0.05f,
+        center = Offset(center.x, size.height * 0.73f),
+    )
+}
+
+/** Dibuja una exclamación dentro de un círculo (error). */
+internal fun DrawScope.drawErrorCircle(color: Color) {
+    val stroke = size.minDimension * 0.08f
+    drawCircle(
+        color = color,
+        radius = size.minDimension * 0.42f,
+        center = center,
+        style = Stroke(width = stroke),
+    )
+    drawLine(
+        color = color,
+        start = Offset(center.x, size.height * 0.3f),
+        end = Offset(center.x, size.height * 0.56f),
+        strokeWidth = stroke * 1.4f,
+        cap = StrokeCap.Round,
+    )
+    drawCircle(
+        color = color,
+        radius = size.minDimension * 0.06f,
+        center = Offset(center.x, size.height * 0.7f),
+    )
+}
+
 /** Crea el trazado de una estrella de 5 puntas centrada en [center]. */
 internal fun starPath(center: Offset, outerRadius: Float, innerRadius: Float): Path {
     val path = Path()

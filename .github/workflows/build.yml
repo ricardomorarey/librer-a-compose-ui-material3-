@@ -24,3 +24,8 @@ jobs:
 
       - name: Compilar librería
         run: ./gradlew :library:assemble --stacktrace
+
+      # Renderiza todos los componentes a PNG con Compose Desktop:
+      # sirve de smoke test de que ninguno rompe en tiempo de ejecución
+      - name: Generar capturas del README
+        run: ./gradlew :library:generateScreenshots --stacktrace

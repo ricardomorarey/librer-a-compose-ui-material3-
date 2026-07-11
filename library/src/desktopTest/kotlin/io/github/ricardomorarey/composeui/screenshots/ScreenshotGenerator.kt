@@ -21,6 +21,11 @@ import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import io.github.ricardomorarey.composeui.avatars.AvatarGroup
+import io.github.ricardomorarey.composeui.avatars.InitialsAvatar
+import io.github.ricardomorarey.composeui.banners.BannerSeverity
+import io.github.ricardomorarey.composeui.banners.InlineBanner
+import io.github.ricardomorarey.composeui.buttons.DestructiveButton
 import io.github.ricardomorarey.composeui.buttons.GradientButton
 import io.github.ricardomorarey.composeui.buttons.LoadingButton
 import io.github.ricardomorarey.composeui.buttons.SecondaryButton
@@ -32,8 +37,14 @@ import io.github.ricardomorarey.composeui.loading.LoadingOverlay
 import io.github.ricardomorarey.composeui.loading.shimmer
 import io.github.ricardomorarey.composeui.misc.CounterBadge
 import io.github.ricardomorarey.composeui.misc.SectionHeader
+import io.github.ricardomorarey.composeui.misc.LabeledDivider
 import io.github.ricardomorarey.composeui.rating.RatingBar
+import io.github.ricardomorarey.composeui.settings.CheckboxRow
+import io.github.ricardomorarey.composeui.settings.RadioGroup
+import io.github.ricardomorarey.composeui.settings.SwitchRow
 import io.github.ricardomorarey.composeui.states.EmptyState
+import io.github.ricardomorarey.composeui.steppers.QuantityStepper
+import io.github.ricardomorarey.composeui.steppers.StepProgressIndicator
 import io.github.ricardomorarey.composeui.textfields.LabeledTextField
 import io.github.ricardomorarey.composeui.textfields.PasswordTextField
 import io.github.ricardomorarey.composeui.textfields.SearchField
@@ -97,6 +108,85 @@ class ScreenshotGenerator {
                     SecondaryButton(text = "Cancelar", onClick = {})
                     GradientButton(text = "Empezar", onClick = {})
                 }
+                DestructiveButton(text = "Eliminar", onClick = {})
+            }
+        }
+
+        capture("banners", 900, 640) {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                InlineBanner(
+                    message = "Hay una nueva versión disponible.",
+                    severity = BannerSeverity.Info,
+                    actionText = "Actualizar",
+                    onAction = {},
+                )
+                InlineBanner(
+                    message = "Los cambios se han guardado.",
+                    severity = BannerSeverity.Success,
+                )
+                InlineBanner(
+                    title = "Sin conexión",
+                    message = "Se reintentará automáticamente.",
+                    severity = BannerSeverity.Warning,
+                )
+                InlineBanner(
+                    message = "No se pudo completar el pago.",
+                    severity = BannerSeverity.Error,
+                    onDismiss = {},
+                )
+            }
+        }
+
+        capture("settings", 900, 640) {
+            var notifications by remember { mutableStateOf(true) }
+            var newsletter by remember { mutableStateOf(false) }
+            var theme by remember { mutableStateOf<String?>("Sistema") }
+            Column {
+                SwitchRow(
+                    title = "Notificaciones",
+                    subtitle = "Avisos de actividad en tu cuenta",
+                    checked = notifications,
+                    onCheckedChange = { notifications = it },
+                )
+                CheckboxRow(
+                    title = "Boletín semanal",
+                    checked = newsletter,
+                    onCheckedChange = { newsletter = it },
+                )
+                RadioGroup(
+                    options = listOf("Claro", "Oscuro", "Sistema"),
+                    selectedOption = theme,
+                    onOptionSelected = { theme = it },
+                )
+            }
+        }
+
+        capture("avatars", 900, 220) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(32.dp),
+                verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+            ) {
+                InitialsAvatar(name = "Ada Lovelace")
+                AvatarGroup(
+                    names = listOf(
+                        "Ada Lovelace",
+                        "Grace Hopper",
+                        "Alan Turing",
+                        "Margaret Hamilton",
+                        "Katherine Johnson",
+                        "Dennis Ritchie",
+                    ),
+                )
+            }
+        }
+
+        capture("steppers", 900, 360) {
+            Column(verticalArrangement = Arrangement.spacedBy(28.dp)) {
+                QuantityStepper(value = 2, onValueChange = {})
+                StepProgressIndicator(
+                    steps = listOf("Carrito", "Envío", "Pago", "Confirmar"),
+                    currentStep = 2,
+                )
             }
         }
 
@@ -146,7 +236,7 @@ class ScreenshotGenerator {
             RatingBar(rating = 3)
         }
 
-        capture("misc", 900, 300) {
+        capture("misc", 900, 400) {
             Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
                 SectionHeader(
                     title = "Populares",
@@ -161,6 +251,7 @@ class ScreenshotGenerator {
                     CounterBadge(count = 5)
                     CounterBadge(count = 128)
                 }
+                LabeledDivider(text = "o continúa con", modifier = Modifier.width(400.dp))
             }
         }
 

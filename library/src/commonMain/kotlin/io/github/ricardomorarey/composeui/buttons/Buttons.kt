@@ -58,6 +58,33 @@ fun LoadingButton(
 }
 
 /**
+ * Botón para acciones destructivas (eliminar, cerrar sesión...):
+ * usa los colores de error del tema.
+ *
+ * @param text Texto del botón.
+ * @param onClick Acción al pulsar.
+ */
+@Composable
+fun DestructiveButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.error,
+            contentColor = MaterialTheme.colorScheme.onError,
+        ),
+    ) {
+        Text(text)
+    }
+}
+
+/**
  * Botón secundario con borde (variante Outlined de Material 3).
  *
  * @param text Texto del botón.

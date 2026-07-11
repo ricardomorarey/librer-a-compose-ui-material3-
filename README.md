@@ -48,6 +48,9 @@ SecondaryButton(text = "Cancelar", onClick = { /* ... */ })
 
 // Botón con degradado (por defecto primary -> tertiary del tema)
 GradientButton(text = "Empezar", onClick = { /* ... */ })
+
+// Acciones destructivas (usa los colores de error del tema)
+DestructiveButton(text = "Eliminar", onClick = { /* ... */ })
 ```
 
 <img src="docs/screenshots/buttons.png" width="450" alt="LoadingButton, SecondaryButton y GradientButton">
@@ -123,6 +126,75 @@ if (showDeleteDialog) {
 }
 ```
 
+### Avisos — `...composeui.banners`
+
+```kotlin
+InlineBanner(
+    message = "Hay una nueva versión disponible.",
+    severity = BannerSeverity.Info, // Info, Success, Warning o Error
+    actionText = "Actualizar",
+    onAction = { /* ... */ },
+    onDismiss = { /* muestra una X para descartar */ },
+)
+```
+
+<img src="docs/screenshots/banners.png" width="450" alt="InlineBanner en sus cuatro severidades">
+
+### Ajustes — `...composeui.settings`
+
+```kotlin
+SwitchRow(
+    title = "Notificaciones",
+    subtitle = "Avisos de actividad en tu cuenta",
+    checked = notificationsEnabled,
+    onCheckedChange = { notificationsEnabled = it },
+)
+
+CheckboxRow(
+    title = "Boletín semanal",
+    checked = newsletter,
+    onCheckedChange = { newsletter = it },
+)
+
+RadioGroup(
+    options = listOf("Claro", "Oscuro", "Sistema"),
+    selectedOption = theme,
+    onOptionSelected = { theme = it },
+)
+```
+
+<img src="docs/screenshots/settings.png" width="450" alt="SwitchRow, CheckboxRow y RadioGroup">
+
+### Avatares — `...composeui.avatars`
+
+```kotlin
+// Iniciales con color determinista derivado del nombre
+InitialsAvatar(name = "Ada Lovelace")
+
+// Grupo solapado; si hay más de maxVisible muestra "+N"
+AvatarGroup(
+    names = listOf("Ada Lovelace", "Grace Hopper", "Alan Turing", /* ... */),
+    maxVisible = 4,
+)
+```
+
+<img src="docs/screenshots/avatars.png" width="450" alt="InitialsAvatar y AvatarGroup">
+
+### Steppers — `...composeui.steppers`
+
+```kotlin
+// Selector de cantidad (carritos, entradas...)
+QuantityStepper(value = qty, onValueChange = { qty = it }, range = 0..99)
+
+// Progreso de un asistente por pasos
+StepProgressIndicator(
+    steps = listOf("Carrito", "Envío", "Pago", "Confirmar"),
+    currentStep = 2,
+)
+```
+
+<img src="docs/screenshots/steppers.png" width="450" alt="QuantityStepper y StepProgressIndicator">
+
 ### Carga — `...composeui.loading`
 
 ```kotlin
@@ -177,6 +249,9 @@ RatingBar(
 SectionHeader(title = "Populares", actionText = "Ver todo", onAction = { /* ... */ })
 
 CounterBadge(count = 128) // muestra "99+"
+
+// Divisor con etiqueta centrada
+LabeledDivider(text = "o continúa con")
 ```
 
 <img src="docs/screenshots/misc.png" width="450" alt="SectionHeader y CounterBadge">
